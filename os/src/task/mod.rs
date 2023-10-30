@@ -184,6 +184,10 @@ impl TaskManager {
         unsafe {
             (*task).status = task_info.task_status;
             (*task).time = current_time - task_info.time;
+
+            for i in 0..MAX_SYSCALL_NUM {  //更新系统调用次数
+                (*task).syscall_times[i] = task_info.syscall_times[i];
+            }
         }
 
     }
